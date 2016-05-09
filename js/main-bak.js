@@ -25,9 +25,6 @@ function renderText(){
 function setCell(cell){
   if (gameOver) return;
   //Insert the current player "X" turn into the array.
-  if (board[cell] !== " ") {
-    return;
-  }
   board[cell] = player;
   //The checkState() function will verify if any player has won.
   checkState();
@@ -46,7 +43,7 @@ function changePlayer(){
 }
 
 function checkState(){
-  $.each(winConditions, function(index,value){
+  $.each(winConditions,function(index,value){
    if (board[winConditions[index][0]] == board[winConditions[index][1]]
     && board[winConditions[index][0]] == board[winConditions[index][2]]
     && board[winConditions[index][0]] != " "){

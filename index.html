@@ -3,12 +3,35 @@
 <head>
   <link rel="stylesheet" href="css/style.css">
   <meta charset="UTF-8">
-  <title>Tic Tac Toe </title>
+  <title>TIC TAC TOE GAME</title>
 </head>
-<body>
-  <h1>GA - WDi14 - Project 0</h1>
-  <h2>Tic Tac Toe Game</h2>
+  <body>
 
-<script src="js/main.js"></script>
-</body>
+    <div class="container">
+      <h1>GA - WDi 14 - TIC TAC TOE GAME - PROJECT 0</h1>
+      <div class='tictactoe'>
+        <div class="board">
+          <div class="cell 0" onClick="setCell(0)"></div>
+          <div class="cell 1" onClick="setCell(1)">></div>
+          <div class="cell 2" onClick="setCell(2)"></div>
+          <div class="cell 3" onClick="setCell(3)"></div>
+          <div class="cell 4" onClick="setCell(4)"></div>
+          <div class="cell 5" onClick="setCell(5)"></div>
+          <div class="cell 6" onClick="setCell(6)"></div>
+          <div class="cell 7" onClick="setCell(7)"></div>
+          <div class="cell 8" onClick="setCell(8)"></div>
+        </div>
+        <div class="options">
+          <div class="playerText"></div>
+          <button class="restart" onClick="init()">Restart</button>
+        </div>
+      </div>
+      <footer>My repo on <a href="https://github.com/fbi1714/ga-project-0">Github</a></footer>
+    </div>
+
+    <!--  LIBRARIES USED FOR THE PROJECT -->
+  <script src="https://code.jquery.com/jquery-1.12.3.js" integrity="sha256-1XMpEtA4eKXNNpXcJ1pmMPs8JV+nwLdEqwiJeCQEkyc=" crossorigin="anonymous"></script>
+  <script type="text/javascript"  src="js/jquery-1.12.3.js"></script>
+  <script type="text/javascript" src="js/main.js"> </script>
+  </body>
 </html>
