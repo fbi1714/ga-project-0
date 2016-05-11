@@ -1,37 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="css/animate.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
+  <link href='https://fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css'>
+<link rel="icon"
+      type="image/png"
+      href="img/ga-logo-undefined.png">
   <meta charset="UTF-8">
-  <title>TIC TAC TOE GAME</title>
+  <title>TICTACTOE</title>
 </head>
-  <body>
-
-    <div class="container">
-      <h1>GA - WDi 14 - TIC TAC TOE GAME - PROJECT 0</h1>
-      <div class='tictactoe'>
-        <div class="board">
-          <div class="cell 0" onClick="setCell(0)"></div>
-          <div class="cell 1" onClick="setCell(1)">></div>
-          <div class="cell 2" onClick="setCell(2)"></div>
-          <div class="cell 3" onClick="setCell(3)"></div>
-          <div class="cell 4" onClick="setCell(4)"></div>
-          <div class="cell 5" onClick="setCell(5)"></div>
-          <div class="cell 6" onClick="setCell(6)"></div>
-          <div class="cell 7" onClick="setCell(7)"></div>
-          <div class="cell 8" onClick="setCell(8)"></div>
+<body>
+      <header>
+          <ul class="headerList">
+            <li><img src="img/ga-logo-undefined-body.png" ></li>
+            <li><h1>The Game </h1></li>
+            <!-- <li><h3>TIC TAC TOE</h3></li> -->
+          </ul>
+      </header>
+      <hr>
+      <main>
+        <div class="subHead">
+            <form>Single Player Mode
+              <input type="checkbox" id="autoPlay" checked>
+          </form>
         </div>
-        <div class="options">
-          <div class="playerText"></div>
-          <button class="restart" onClick="init()">Restart</button>
-        </div>
+        <div class="container">
+            <div id="cell1" onclick="chkGame(this.id)"></div>
+            <div id="cell2" onclick="chkGame(this.id)"></div>
+            <div id="cell3" onclick="chkGame(this.id)"></div>
+            <div id="cell4" onclick="chkGame(this.id)"></div>
+            <div id="cell5" onclick="chkGame(this.id)"></div>
+            <div id="cell6" onclick="chkGame(this.id)"></div>
+            <div id="cell7" onclick="chkGame(this.id)"></div>
+            <div id="cell8" onclick="chkGame(this.id)"></div>
+            <div id="cell9" onclick="chkGame(this.id)"></div>
       </div>
-      <footer>My repo on <a href="https://github.com/fbi1714/ga-project-0">Github</a></footer>
-    </div>
-
-    <!--  LIBRARIES USED FOR THE PROJECT -->
-  <script src="https://code.jquery.com/jquery-1.12.3.js" integrity="sha256-1XMpEtA4eKXNNpXcJ1pmMPs8JV+nwLdEqwiJeCQEkyc=" crossorigin="anonymous"></script>
-  <script type="text/javascript"  src="js/jquery-1.12.3.js"></script>
-  <script type="text/javascript" src="js/main.js"> </script>
-  </body>
+      </main>
+      <hr>
+      <footer><a href="https://www.github.com/fbi1714">GitHub</a></footer>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+      <script src="sweetalert-master/dist/sweetalert.min.js"></script>
+      <script src="js/main.js"></script>
+    </body>
 </html>
