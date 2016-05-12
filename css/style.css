@@ -47,10 +47,10 @@ body,html{
 }
 
 [class*="0"],[class*="1"],[class*="2"],[class*="3"],[class*="4"],[class*="5"] {
-	border-bottom:2px solid black;
+	border-bottom:6px solid black;
 }
 [class*="0"],[class*="3"],[class*="6"],[class*="1"],[class*="4"],[class*="7"] {
-	border-right:2px solid black;
+	border-right:6px solid black;
 
 }
 
