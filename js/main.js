@@ -183,9 +183,11 @@ var winner = function() {
                                         if (isConfirm) {
                                                 resetScore();
                                                 location.reload();
+                                                location.href = "game-over.html"
 
                                         } else {
                                           location.reload();
+                                          location.href = "game-over.html"
 
                                         }
 
