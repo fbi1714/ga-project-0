@@ -71,7 +71,7 @@ function checkState(){
     && board[winConditions[index][0]] != " "){
       gameOver = true;
       $('.playerText').text('Player ' + player + ' wins');
-      // winner();
+      winner();
       renderBoard();
    }
   });
