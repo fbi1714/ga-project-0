@@ -68,12 +68,19 @@ body,html{
 }
 .restart{
 	float:right;
-  padding: 0.4em 1em;
-  /*border: 1px solid #000;
-  background: rgba(255,255,255,0);*/
+	width: 110px;
+	height: 35px;
+	padding: 0.4em 1em;
   border-radius: 4px;
-	font-size: 1.0em;
+	font-size: 1em;
+	background: #5d9634;
+	color: #ffffff;
+	text-transform: uppercase;
 
+}
+.restart:hover{
+	background: #538c2b;
+  text-decoration: none;
 }
 /*NEW CODE GOES HERE*/
 .headerList {
@@ -125,4 +132,21 @@ svg:hover{
 }
 .score p{
 	color:black;
+}
+
+.btn {
+	width: 110px;
+	height: 35px;
+	padding: 0.4em 1em;
+  border-radius: 4px;
+	font-size: .5em;
+	background: #538c2b;
+	color: #ffffff;
+	text-transform: uppercase;
+
+}
+
+.btn:hover {
+  background: #5d9634;
+  text-decoration: none;
 }
