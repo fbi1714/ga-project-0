@@ -1,4 +1,4 @@
-var autoPlay = sessionStorage.getItem('autoPlay',autoPlay);
+//var autoPlay = sessionStorage.getItem('autoPlay',autoPlay);
 var board;
 var player;
 var gameOver;
@@ -42,7 +42,7 @@ var renderText = function() {
 
 var setCell = function (cell){
   //Verify if the single player mode is enabled.
-  // var autoPlay = $( "#autoPlay" ).is(":checked");
+  var autoPlay = $( "#autoPlay" ).is(":checked");
   //If has a winner stops the function
   if (gameOver) return;
   //Check if the div(cell) isn't filled.
@@ -64,7 +64,7 @@ var setCell = function (cell){
   //Render the 'X' move to the board
   renderText();
   //Test if the current play is "O" and if the Single Player Mode was enabled.
-  if(player === "O" && autoPlay === true){
+  if(player === "O" && autoPlay){
     //"O" makes a move through a random value.
     oMove();
     //Function checks the current state of the game (Array board[]).
@@ -117,9 +117,7 @@ var init = function(){
   //Choose the first player to play randomly
   choosePlayer();
   gameOver = false;
-  autoPlay = sessionStorage.getItem('autoPlay', autoPlay);
-  if(player === "O" && autoPlay === true){
-     debugger;
+  if(player === "O" && autoPlay){
      initPlayerMove();
      oMove();
      checkState();
@@ -245,23 +243,10 @@ var initPlayerMove = function() {  swal({title:"Player: " + player.toUpperCase()
 var start = function () {
 
 swal({  title: "LET'S PLAY TIC TAC TOE?",
-        text: "CHOOSE A MODE!",
-        html: true,
-        showCancelButton: true,
-        cancelButtonText: "Single Player Mode",
-        confirmButtonColor: "#5d9634",
-        confirmButtonText: "Multiplayer Mode",
-        closeOnConfirm: false,
-        closeOnCancel: false },function(isConfirm){
-                                          if (isConfirm) {
-                                              sessionStorage.setItem('autoPlay', autoPlay =  false);
-                                              init();
-                                          } else {
-                                                sessionStorage.setItem('autoPlay', autoPlay =  true);
-                                                init();
-                                          }
-                                        });
-}
+        text: "",
+        timer: 3000,   showConfirmButton: false });
+        waitWindow(3500);
+};
 //Randomly choose a Player. "X" or "O".
 var choosePlayer = function()
 {
@@ -305,12 +290,15 @@ var waitBoardRendering = function(Pause) {
   }, Pause );
   return;
 };
+//Fixing
+//important piece of code for call functions.
+var waitWindow = function(Pause) {
+  setTimeout( function() {
+    init();
+  }, Pause );
+  return;
+};
 //Call initialize function after the page had been rendered
 $(document).ready(function(){
-    if((winCountX === undefined || winCountX === null || isNaN(winCountX)) && (winCountO === undefined || winCountO === null || isNaN(winCountO))){
-          start();
-    }else {
-          autoPlay = sessionStorage.getItem('autoPlay', autoPlay);
-          init();
-    }
-});
+      init();
+    });

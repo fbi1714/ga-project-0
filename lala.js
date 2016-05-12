@@ -184,3 +184,34 @@ swal({  title: "LET'S PLAY TIC TAC TOE?",
                                                 init();
                                           }
                                         });
+
+
+
+
+                                        var start = function () {
+
+                                        swal({  title: "LET'S PLAY TIC TAC TOE?",
+                                                text: "CHOOSE A MODE!",
+                                                html: true,
+                                                showCancelButton: true,
+                                                cancelButtonText: "Single Player Mode",
+                                                confirmButtonColor: "#5d9634",
+                                                confirmButtonText: "Multiplayer Mode",
+                                                closeOnConfirm: false,
+                                                closeOnCancel: false },function(isConfirm){
+                                                                                  if (isConfirm) {
+                                                                                      //sessionStorage.setItem('autoPlay', autoPlay =  false);
+                                                                                      init();
+                                                                                  } else {
+                                                                                        //sessionStorage.setItem('aut`oPlay', autoPlay =  true);
+                                                                                        init();
+                                                                                  }
+                                                                                });
+                                        }
+swal({   title: "Auto close alert!",   text: "I will close in 2 seconds.",   timer: 2000,   showConfirmButton: false });
+
+if((winCountX === undefined || winCountX === null || isNaN(winCountX)) && (winCountO === undefined || winCountO === null || isNaN(winCountO))){
+      start();
+}else {
+      //autoPlay = sessionStorage.getItem('autoPlay', autoPlay);
+      init();
