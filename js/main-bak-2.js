@@ -29,48 +29,34 @@ function renderText(){
 
 
 function setCell(cell){
-  //Verify if the single player mode is enabled.
   var autoPlay = $( "#autoPlay" ).is(":checked");
-  //If has a winner stops the function
   if (gameOver) return;
   //Check if the div(cell) isn't filled.
   if (board[cell] !== " ") {
     return; //exit function
   }
-  //Board cell gets the 'X' value.
+
   board[cell] = player;
-  //Checks 'X' move on the board
+
+  //The checkState() function will verify if any player has won.
   checkState();
-  //If has a winner stops the function
   if (gameOver) return;
-  //Changes the Player to "O";
   changePlayer();
-  //Recheck the board state for a winner.
-  checkState();
-  //Render the board.
-  renderBoard();
-  //Render the 'X' move to the board
-  renderText();
-  //Test if the current play is "O" and if the Single Player Mode was enabled.
   if(player === "O" && autoPlay){
-    //"O" makes a move through a random value.
     oMove();
-    //Function checks the current state of the game (Array board[]).
-    checkState();
-    //If found a winning position, exit function.
-    if (gameOver) return;
-    //Else, changes the player back to "X";
     changePlayer();
-    //Renders the board again;
     renderBoard();
-    //Renders "0" move on the screen, html code.
     renderText();
-    //Exit the function.
+    checkState();
     return;
   }
+  checkState();
+  renderBoard();
+  renderText();
+
 }
 
-//Changes the player.
+//This function just change the player.
 function changePlayer(){
   if (player == "O")
     return player = "X";
@@ -78,7 +64,6 @@ function changePlayer(){
     return player = "O";
 }
 
-//Check the game state. Has a Winner? Is it a tie?
 function checkState(){
   $.each(winConditions, function(index,value){
    if (board[winConditions[index][0]] == board[winConditions[index][1]]
@@ -86,7 +71,7 @@ function checkState(){
     && board[winConditions[index][0]] != " "){
       gameOver = true;
       $('.playerText').text('Player ' + player + ' wins');
-      winner();
+      // winner();
       renderBoard();
    }
   });
@@ -96,23 +81,12 @@ function checkState(){
 //who is the current player.
 function init(){
   board = [" "," "," "," "," "," "," "," "," "];
-  // player = "X";
-  choosePlayer();
+  player = "X";
   gameOver = false;
-  if(player === "O"){
-     oMove();
-     checkState();
-     if(gameOver) return;
-     renderText();
-     renderBoard();
-     changePlayer();
-     return;
-  }
   renderBoard();
   renderText();
 }
 
-//Checks if the board was completely filled.
 var checkDraw = function () {
   for (var i = 0; i < board.length; i++) {
     if ( board[i] === " " ) {
@@ -155,16 +129,7 @@ var draw = function() {
     confirmButtonColor: '#5d9634'
   }, function(){location.reload()});
 };
-//Randomly choose a Player. "X" or "O".
-function choosePlayer()
-{
-    var text = "";
-    var possible = "OX";
 
-        text = possible.charAt(Math.floor(Math.random() * possible.length));
-
-    return player=text;
-};
 
 //Call initialize function after the page had been rendered
 $(document).ready(function(){
