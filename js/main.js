@@ -1,128 +1,137 @@
-  //Set main variables
 
-  var player = "x";
-  var move = 0;
+var board;
+var player;
+var winConditions = [[0,1,2], [3,4,5], [6,7,8],
+                       [0,3,6], [1,4,7], [2,5,8],
+                       [0,4,8], [6,4,2]];
+var gameOver;
 
-  //Check the winner, changes the player, fill the values.
 
-  var chkGame = function(id) {
-      var tst = chkText(id);
-      var autoPlay = document.getElementById('autoPlay').checked;
-      if(tst === ""){
-        var textnode = document.createTextNode(player);
-        document.getElementById(id).appendChild(textnode);
-        move++;
-        if (winChk()) {
-            return winner();
-        };
+//This function renders the divs, at the
+//beginning of the game.
 
-        if(move >= 9){
-          winChk(false);
-          draw();
-        }
-        if(player === "x"){
-          player = "o";
-        }else {
-          player = "x";
-        }
-      };
-      if(player === "o" && autoPlay){
+function renderBoard (){
+  for (var i = 0;i<board.length;i++){
+    $('.' + i).text(board[i]);
+  }
+}
 
-        setTimeout(function(){chkGame(oMove())},1000);
-      };
-  };
+//This function set the "X" player as the first player.
+//He starts the game.
+function renderText(){
+  if(!checkDraw()){
+  $('.playerText').text('Turn : ' + player);
+} else{
+  // $('.playerText').text('It\'s a draw');
+  draw();
+}
+}
 
-  //Gets the value from the div.
-  var chkText = function(id){
-      var text = document.getElementById(id).textContent;
-      return text;
-  };
 
-  //Checks if the moves matches some of the winning conditions
+function setCell(cell){
+  var autoPlay = $( "#autoPlay" ).is(":checked");
+  if (gameOver) return;
+  //Check if the div(cell) isn't filled.
+  if (board[cell] !== " ") {
+    return; //exit function
+  }
 
-  var winChk = function() {
+  board[cell] = player;
 
-    if (chkText("cell1") === chkText("cell2") &&
-    chkText("cell1") === chkText("cell3") &&
-    chkText("cell1") !== ""){
+  //The checkState() function will verify if any player has won.
+  checkState();
+  if (gameOver) return;
+  changePlayer();
+  if(player === "O" && autoPlay){
+    oMove();
+    changePlayer();
+    renderBoard();
+    renderText();
+    checkState();
+    return;
+  }
+  checkState();
+  renderBoard();
+  renderText();
 
-      return true;
+}
 
-    } else if (chkText("cell4") === chkText("cell5") &&
-    chkText("cell4") === chkText("cell6") &&
-    chkText("cell4") !== "") {
+//This function just change the player.
+function changePlayer(){
+  if (player == "O")
+    return player = "X";
+  else
+    return player = "O";
+}
 
-      return true;
+function checkState(){
+  $.each(winConditions, function(index,value){
+   if (board[winConditions[index][0]] == board[winConditions[index][1]]
+    && board[winConditions[index][0]] == board[winConditions[index][2]]
+    && board[winConditions[index][0]] != " "){
+      gameOver = true;
+      $('.playerText').text('Player ' + player + ' wins');
+      // winner();
+      renderBoard();
+   }
+  });
+}
 
-    } else if (chkText("cell7") === chkText("cell8") &&
-    chkText("cell7") === chkText("cell9") &&
-    chkText("cell7") !== ""){
+//Initialize function: renders the board with null values and defines
+//who is the current player.
+function init(){
+  board = [" "," "," "," "," "," "," "," "," "];
+  player = "X";
+  gameOver = false;
+  renderBoard();
+  renderText();
+}
 
-      return true;
-    } else if (chkText("cell1") === chkText("cell4") &&
-    chkText("cell1") === chkText("cell7") &&
-    chkText("cell1") !== ""){
-
-      return true;
-    } else if (chkText("cell2") === chkText("cell5") &&
-    chkText("cell2") === chkText("cell8") &&
-    chkText("cell2") !== ""){
-
-      return true;
-    } else if (chkText("cell3") === chkText("cell6") &&
-    chkText("cell3") === chkText("cell9") &&
-    chkText("cell3") !== ""){
-
-      return true;
-
-    } else if (chkText("cell1") === chkText("cell5") &&
-    chkText("cell1") === chkText("cell9") &&
-    chkText("cell1") !== ""){
-
-      return true;
-
-    } else if (chkText("cell3") === chkText("cell5") &&
-    chkText("cell3") === chkText("cell7") &&
-    chkText("cell3") !== ""){
-
-      return true;
-
-    } else {
-
-        return false;
-
+var checkDraw = function () {
+  for (var i = 0; i < board.length; i++) {
+    if ( board[i] === " " ) {
+      return false;
     }
-  };
+  }
+  return true;
+};
 
-  //Set the 'O' player move.
-  oMove = function(){
-
-    return "cell" + Math.floor((Math.random()*9)+1);
-  };
-
-  //Alert window for the winner!
-  var winner = function() {
-
-    swal({
-      title: "GAME OVER!",
-      text: "Player " + player.toUpperCase() + " won the game!",
-      confirmButtonText: "Ok!",
-      confirmButtonColor: '#5d9634'
-    });
-  //   setTimeout(function() {
-  //     window.location.reload();
-  //   }, 3000);
-    window.location.reload();
-  };
+//Set the 'O' player move.
+var oMove = function(){
+  var i = Math.floor((Math.random()*9)+1);
+  // MAKE SURE NO ONE IS IN THIS POSITION AND IT IS NOT A DRAW
+  if (board[i] !== " " && !checkDraw()) {
+    return oMove(); //exit function
+  }
+  return board[i]=player;
 
 
-  //Alert window for the draw!
-  var draw = function() {
-    swal({
-      title: "Hmm, it's a draw!",
-      text: "No wins!",
-      confirmButtonText: "Ok!",
-      confirmButtonColor: '#5d9634'
-    });
-    window.location.reload();
-  };
+};
+
+//Alert window for the winner!
+var winner = function() {
+
+  swal({
+    title: "GAME OVER!",
+    text: "Player " + player.toUpperCase() + " won the game!",
+    confirmButtonText: "Ok!",
+    confirmButtonColor: '#5d9634'
+  },function(){location.reload()});
+};
+
+
+//Alert window for the draw!
+var draw = function() {
+  swal({
+    title: "Hmm, it's a draw!",
+    text: "No wins!",
+    confirmButtonText: "Ok!",
+    confirmButtonColor: '#5d9634'
+  }, function(){location.reload()});
+};
+
+
+//Call initialize function after the page had been rendered
+$(document).ready(function(){
+  init();
+});
