@@ -7,7 +7,7 @@ body,html{
 	width: 100%;
 	height: 95%;
 	font-family: 'Francois One', sans-serif;
-	background: repeating-linear-gradient(           to bottom,           #5d9634,           #5d9634 10px,           #538c2b 10px,           #538c2b 20px         );
+	background: repeating-linear-gradient(           to bottom,           #5d9634,           #5d9634 10px,           #538c2b 10px,           #538c2b 20px         );`
 }
 
 .container{
@@ -62,7 +62,7 @@ body,html{
 	float:left;
 	padding: 0.4em 1em;
   background: rgba(255,255,255,0);
-	font-size: 1.0em;
+	font-size: 22px;
 	text-transform: uppercase;
 
 }
@@ -120,3 +120,23 @@ svg:hover{
   top: 10%;
   transform: translateY(-50%);
 }
+.score{
+		margin-top: 5px;
+		font-size: 22px;
+}
+.score p{
+	color:black;
+}
+
+/*.sweet-alert {
+  	background: repeating-linear-gradient(           to right,           #5d9634,           #5d9634 10px,           #538c2b 10px,           #538c2b 20px         );
+}
+
+.sweet-alert button{
+	color:black;
+	font-weight: bolder;
+}
+
+.sweet-alert h2 {
+	color: black;
+}*/
