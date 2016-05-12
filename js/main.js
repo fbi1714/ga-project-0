@@ -1,4 +1,3 @@
-
 var autoPlay = sessionStorage.getItem('autoPlay',autoPlay);
 var board;
 var player;
@@ -65,7 +64,7 @@ var setCell = function (cell){
   //Render the 'X' move to the board
   renderText();
   //Test if the current play is "O" and if the Single Player Mode was enabled.
-  if(player === "O" && autoPlay){
+  if(player === "O" && autoPlay === true){
     //"O" makes a move through a random value.
     oMove();
     //Function checks the current state of the game (Array board[]).
@@ -119,7 +118,7 @@ var init = function(){
   choosePlayer();
   gameOver = false;
   autoPlay = sessionStorage.getItem('autoPlay', autoPlay);
-  if(player === "O" && autoPlay){
+  if(player === "O" && autoPlay === true){
      debugger;
      initPlayerMove();
      oMove();
@@ -240,7 +239,7 @@ var draw = function() {
   });
 };
 //Alert the user that the computer will start the game.
-var initPlayerMove = function() {  swal({title:"Player: " + player.toUpperCase() + " stars", timer: 1100,   showConfirmButton: false });
+var initPlayerMove = function() {  swal({title:"Player: " + player.toUpperCase() + " starts", timer: 1100,   showConfirmButton: false });
 };
 //Start
 var start = function () {
