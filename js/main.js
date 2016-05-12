@@ -61,7 +61,7 @@ var setCell = function (cell){
   //Recheck the board state for a winner.
   checkState();
   //Render the board.
-  renderBoard();
+  waitBoardRendering(500);
   //Render the 'X' move to the board
   renderText();
   //Test if the current play is "O" and if the Single Player Mode was enabled.
@@ -75,7 +75,7 @@ var setCell = function (cell){
     //Else, changes the player back to "X";
     changePlayer();
     //Renders the board again;
-    renderBoard();
+    waitBoardRendering(500);
     //Renders "0" move on the screen, html code.
     renderText();
     //Exit the function.

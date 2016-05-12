@@ -121,22 +121,8 @@ svg:hover{
   transform: translateY(-50%);
 }
 .score{
-		margin-top: 5px;
 		font-size: 22px;
 }
 .score p{
 	color:black;
 }
-
-/*.sweet-alert {
-  	background: repeating-linear-gradient(           to right,           #5d9634,           #5d9634 10px,           #538c2b 10px,           #538c2b 20px         );
-}
-
-.sweet-alert button{
-	color:black;
-	font-weight: bolder;
-}
-
-.sweet-alert h2 {
-	color: black;
-}*/
